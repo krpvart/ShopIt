@@ -1,10 +1,10 @@
 package com.krpvartstudio.shopit.domain
 
-class EditItemShopUseCase {
+class EditItemShopUseCase(private val repositoryShopList: RepositoryShopList) {
 
-    fun editItemShop(itemShop: ItemShop): ItemShop {
+    fun editItemShop(itemShop: ItemShop) {
 
-        TODO("Реализовать редактирование объекта ItemShop")
+        repositoryShopList.editItemShop(itemShop)
 
     }
 

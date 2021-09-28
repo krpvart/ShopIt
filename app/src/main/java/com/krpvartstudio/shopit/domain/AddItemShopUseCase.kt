@@ -1,9 +1,9 @@
 package com.krpvartstudio.shopit.domain
 
-class AddItemShopUseCase{
+class AddItemShopUseCase (private val repositoryShopList: RepositoryShopList){
 
     fun addItemShopList(itemShop: ItemShop) {
-    TODO("Реализовать добавление в список")
+        repositoryShopList.addItemShop(itemShop)
     }
 
 }
