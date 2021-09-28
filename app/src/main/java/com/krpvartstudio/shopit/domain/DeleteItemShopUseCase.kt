@@ -1,8 +1,8 @@
 package com.krpvartstudio.shopit.domain
 
-class DeleteItemShopUseCase {
-    fun deleteItemShopList(itemShopL: ItemShop) {
-       TODO("Реализовать удаление из списка покупок")
+class DeleteItemShopUseCase(private val repositoryShopList: RepositoryShopList) {
+    fun deleteItemShopList(itemShop: ItemShop) {
+        repositoryShopList.deleteItemShop(itemShop)
     }
 
 }
