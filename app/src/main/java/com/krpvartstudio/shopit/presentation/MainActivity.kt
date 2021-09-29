@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import com.krpvartstudio.shopit.R
 import com.krpvartstudio.shopit.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        shoplist_rv.adapter = ListShopAdapter()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         viewModel.shopList.observe(this){
@@ -28,9 +29,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRecyclerView(){
-        listShopAdapter = ListShopAdapter()
-
-
-    }
 }
