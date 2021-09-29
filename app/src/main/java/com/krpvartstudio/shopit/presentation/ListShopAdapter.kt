@@ -4,13 +4,19 @@ import com.krpvartstudio.shopit.databinding.ItemShopListBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.krpvartstudio.shopit.R
 import com.krpvartstudio.shopit.domain.ItemShop
 
 class ListShopAdapter: RecyclerView.Adapter<ListShopAdapter.ListShopViewHolder>() {
 
-    val listShop = listOf<ItemShop>()
+    var listShop = listOf<ItemShop>()
+    set(value){
+        field = value
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListShopViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -26,11 +32,18 @@ class ListShopAdapter: RecyclerView.Adapter<ListShopAdapter.ListShopViewHolder>(
         return listShop.size
     }
 
-    class ListShopViewHolder(private val itemShopListBinding: ItemShopListBinding) : RecyclerView.ViewHolder(itemShopListBinding.root){
+    class ListShopViewHolder(private val itemShopListBinding: ItemShopListBinding)
+        : RecyclerView.ViewHolder(itemShopListBinding.root){
 
         fun bindView(itemShop:ItemShop){
             itemShopListBinding.nameOfItemMtv.text = itemShop.name
             itemShopListBinding.countItemMtv.text = itemShop.count.toString()
+            if (itemShop.enabled){itemShopListBinding.root.setCardBackgroundColor(
+                ContextCompat.getColor(itemShopListBinding.root.context,R.color.purple_500))
+            }else{
+                itemShopListBinding.root.setCardBackgroundColor(
+                    ContextCompat.getColor(itemShopListBinding.root.context,R.color.purple_200))
+            }
         }
 
     }
