@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.krpvartstudio.shopit.R
 import com.krpvartstudio.shopit.domain.ItemShop
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,14 +31,43 @@ class MainActivity : AppCompatActivity() {
         with(shoplist_rv){
             listShopAdapter = ListShopAdapter()
             adapter = listShopAdapter
+        }
+        setupLongClickListener()
+        setupClickListener()
+        setupSwipeListener()
+    }
 
+    private fun setupSwipeListener() {
+        val swipeCallback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val item = listShopAdapter.listShop[viewHolder.adapterPosition]
+                viewModel.deleteItemShop(item)
+            }
         }
-        listShopAdapter.onShopItemLongClickListener = {
-            viewModel.changeEnableState(it)
-        }
+        val itemTouchHelper = ItemTouchHelper(swipeCallback)
+        itemTouchHelper.attachToRecyclerView(shoplist_rv)
+    }
+
+    private fun setupClickListener() {
         listShopAdapter.onShopItemClickListener = {
             Log.d("ItemInfo", "Selected item is ${it.name}")
+        }
+    }
 
+    private fun setupLongClickListener() {
+        listShopAdapter.onShopItemLongClickListener = {
+            viewModel.changeEnableState(it)
         }
     }
 
