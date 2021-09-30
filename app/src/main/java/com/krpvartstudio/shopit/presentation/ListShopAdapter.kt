@@ -18,6 +18,10 @@ class ListShopAdapter: RecyclerView.Adapter<ListShopAdapter.ListShopViewHolder>(
         notifyDataSetChanged()
     }
 
+    var onShopItemLongClickListener: ((ItemShop) -> Unit)? = null
+    var onShopItemClickListener: ((ItemShop) -> Unit)? = null
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListShopViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemShopListBinding = ItemShopListBinding.inflate(layoutInflater, parent, false)
@@ -25,7 +29,16 @@ class ListShopAdapter: RecyclerView.Adapter<ListShopAdapter.ListShopViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ListShopViewHolder, position: Int) {
-        holder.bindView(listShop[position])
+        val itemShop = listShop[position]
+        holder.bindView(itemShop)
+        holder.itemView.setOnLongClickListener{
+            onShopItemLongClickListener?.invoke(itemShop)
+            true
+        }
+        holder.itemView.setOnClickListener {
+            onShopItemClickListener?.invoke(itemShop)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -44,9 +57,13 @@ class ListShopAdapter: RecyclerView.Adapter<ListShopAdapter.ListShopViewHolder>(
                 itemShopListBinding.root.setCardBackgroundColor(
                     ContextCompat.getColor(itemShopListBinding.root.context,R.color.purple_200))
             }
-        }
 
+
+
+        }
     }
+
+
 
 
 }
