@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.krpvartstudio.shopit.R
@@ -14,8 +16,10 @@ class ListShopAdapter: RecyclerView.Adapter<ListShopAdapter.ListShopViewHolder>(
 
     var listShop = listOf<ItemShop>()
     set(value){
+        val callback = ShopListDiffCallback(listShop, value)
+        val diffResult = DiffUtil.calculateDiff(callback)
+        diffResult.dispatchUpdatesTo(this)
         field = value
-        notifyDataSetChanged()
     }
 
     var onShopItemLongClickListener: ((ItemShop) -> Unit)? = null
