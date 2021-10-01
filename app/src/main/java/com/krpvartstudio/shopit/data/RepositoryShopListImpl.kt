@@ -5,12 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.krpvartstudio.shopit.domain.ItemShop
 import com.krpvartstudio.shopit.domain.RepositoryShopList
+import kotlin.random.Random
 
 object RepositoryShopListImpl: RepositoryShopList {
 
     private val shopListLiveData = MutableLiveData<List<ItemShop>>()
     private val shopList  = mutableListOf<ItemShop>()
     private var idAutoInc = 0
+
+
+    init {
+        for(i in 0 until 100) {
+            val item = ItemShop("Name $i", i, Random.nextBoolean())
+            addItemShop(item)
+        }
+    }
 
     override fun addItemShop(itemShop: ItemShop) {
         if (itemShop.id == ItemShop.UNDEFINED_ID) {
