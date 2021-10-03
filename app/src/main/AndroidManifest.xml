@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopIt">
         <activity
+            android:name=".presentation.ItemShopActivity"
+            android:exported="true" />
+        <activity
             android:name=".presentation.ItemShop"
             android:exported="true" />
         <activity
