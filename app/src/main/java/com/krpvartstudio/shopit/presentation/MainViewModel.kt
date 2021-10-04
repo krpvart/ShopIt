@@ -1,6 +1,5 @@
 package com.krpvartstudio.shopit.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.krpvartstudio.shopit.data.RepositoryShopListImpl
 import com.krpvartstudio.shopit.domain.*
