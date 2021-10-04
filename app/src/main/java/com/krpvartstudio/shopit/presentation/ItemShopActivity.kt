@@ -133,7 +133,6 @@ class ItemShopActivity : AppCompatActivity() {
 //            intent.putExtra(EXTRA_ID_ITEM_SHOP, idShopItem)
 //            return intent
 //        }
-//
-//
+//     }
    }
 }
