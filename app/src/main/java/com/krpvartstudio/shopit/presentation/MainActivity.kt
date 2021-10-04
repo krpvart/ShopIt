@@ -68,10 +68,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupClickListener() {
         listShopAdapter.onShopItemClickListener = {
-            addItem_fab.setOnClickListener {
                 val intent = newIntentEditItemShop(this, it.id)
                 startActivity(intent)
-            }
+        }
+        addItem_fab.setOnClickListener {
+            val intent = newIntentAddItemShop(this)
+            startActivity(intent)
         }
     }
 

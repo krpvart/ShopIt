@@ -13,6 +13,7 @@ import java.lang.Exception
 class ItemShopViewModel: ViewModel() {
 
     private val repositoryShopList = RepositoryShopListImpl
+
     private val _errorInputName = MutableLiveData<Boolean>()
     val errorInputName: LiveData<Boolean>
         get() = _errorInputName
@@ -26,7 +27,7 @@ class ItemShopViewModel: ViewModel() {
         get() = _itemShop
 
     private val _shouldCloseScreen = MutableLiveData<Unit>()
-    val houldClosrScreen: LiveData<Unit>
+    val shouldCloseScreen: LiveData<Unit>
         get() = _shouldCloseScreen
 
     private val addItemShopUseCase = AddItemShopUseCase(repositoryShopList)
