@@ -24,7 +24,6 @@
             android:hint="Name"
             app:boxStrokeColor="@color/purple_700"
             app:hintTextColor="@color/purple_700"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/count_til"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -32,11 +31,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name_tiet"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="match_parent"
                 android:maxLines="1"
+
                 />
-
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

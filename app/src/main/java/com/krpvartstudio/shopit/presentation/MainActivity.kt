@@ -1,5 +1,6 @@
 package com.krpvartstudio.shopit.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.krpvartstudio.shopit.R
-import com.krpvartstudio.shopit.domain.ItemShop
+import com.krpvartstudio.shopit.presentation.ItemShopActivity.Companion.newIntentAddItemShop
+import com.krpvartstudio.shopit.presentation.ItemShopActivity.Companion.newIntentEditItemShop
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -21,14 +23,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setupRecycleView()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.shopList.observe(this){
+        viewModel.shopList.observe(this) {
             Log.d("ListTest", it.toString())
             listShopAdapter.listShop = it
         }
+        addItem_fab.setOnClickListener {
+            val intent = newIntentAddItemShop(this)
+            startActivity(intent)
+
+        }
     }
 
-    private fun setupRecycleView(){
-        with(shoplist_rv){
+    private fun setupRecycleView() {
+        with(shoplist_rv) {
             listShopAdapter = ListShopAdapter()
             adapter = listShopAdapter
         }
@@ -61,7 +68,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupClickListener() {
         listShopAdapter.onShopItemClickListener = {
-            Log.d("ItemInfo", "Selected item is ${it.name}")
+            addItem_fab.setOnClickListener {
+                val intent = newIntentEditItemShop(this, it.id)
+                startActivity(intent)
+            }
         }
     }
 

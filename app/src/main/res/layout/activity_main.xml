@@ -20,6 +20,20 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addItem_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:contentDescription="Add shop item"
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_add_24"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
