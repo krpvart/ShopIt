@@ -2,7 +2,8 @@ package com.krpvartstudio.shopit.domain
 
 import androidx.lifecycle.LiveData
 
-interface RepositoryShopList {
+interface
+RepositoryShopList {
 
     fun addItemShop(itemShop: ItemShop)
     fun deleteItemShop(itemShop: ItemShop)
